@@ -68,7 +68,7 @@ export const articles = [
     subtitle: 'Frescura y elegancia para los días de calor',
     category: 'blancos',
     categoryLabel: 'Blancos',
-    image: 'https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1566995541428-f2246c17cda1?w=800&q=80',
     excerpt: 'Cuando el termómetro sube en Buenos Aires, nada mejor que un blanco bien frío. Nuestra selección de los mejores blancos argentinos para sobrevivir al verano.',
     content: `
       <p>El verano en Buenos Aires pide a gritos un buen vino blanco. Atrás quedaron los días en que los blancos argentinos eran sinónimo de mediocridad. Hoy, bodegas de todo el país producen blancos de clase mundial.</p>

@@ -1,0 +1,32 @@
+.star-rating {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.star-rating__icons {
+  display: flex;
+  gap: 2px;
+}
+
+.star-rating__icon--filled {
+  color: var(--color-accent-gold);
+  fill: var(--color-accent-gold);
+}
+
+.star-rating__icon--half {
+  color: var(--color-accent-gold);
+  fill: var(--color-accent-gold);
+  opacity: 0.5;
+}
+
+.star-rating__icon--empty {
+  color: var(--color-text-muted);
+  opacity: 0.3;
+}
+
+.star-rating__label {
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semibold);
+  color: var(--color-accent-gold);
+}

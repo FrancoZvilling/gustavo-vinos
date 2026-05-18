@@ -1,0 +1,45 @@
+.pill-filter {
+  display: flex;
+  gap: var(--space-xs);
+  overflow-x: auto;
+  padding-bottom: var(--space-xs);
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.pill-filter::-webkit-scrollbar {
+  display: none;
+}
+
+.pill-filter__item {
+  flex-shrink: 0;
+  padding: var(--space-xs) var(--space-lg);
+  border-radius: var(--radius-full);
+  border: 1px solid var(--color-border);
+  background: transparent;
+  color: var(--color-text-secondary);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-medium);
+  cursor: pointer;
+  transition: all var(--duration-normal) var(--ease-out);
+  white-space: nowrap;
+}
+
+.pill-filter__item:hover {
+  border-color: var(--color-accent-gold);
+  color: var(--color-accent-gold);
+  background: var(--color-accent-gold-dim);
+}
+
+.pill-filter__item--active {
+  background: var(--color-accent-gold);
+  color: #0D0D0D;
+  border-color: var(--color-accent-gold);
+  font-weight: var(--fw-semibold);
+}
+
+.pill-filter__item--active:hover {
+  background: var(--color-accent-gold);
+  color: #0D0D0D;
+}

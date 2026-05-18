@@ -1,0 +1,60 @@
+export const wineClubPlans = [
+  {
+    id: 'cepa-joven',
+    name: 'Cepa Joven',
+    tagline: 'Tu primer paso en el mundo del vino',
+    price: 15000,
+    currency: 'ARS',
+    period: '/mes',
+    featured: false,
+    benefits: [
+      '2 botellas seleccionadas por mes',
+      'Ficha de cata digital',
+      'Acceso a notas exclusivas',
+      '10% de descuento en restaurantes asociados',
+      'Newsletter mensual premium',
+    ],
+  },
+  {
+    id: 'reserva',
+    name: 'Reserva',
+    tagline: 'Para quienes buscan algo más',
+    price: 28000,
+    currency: 'ARS',
+    period: '/mes',
+    featured: true,
+    benefits: [
+      '3 botellas premium por mes',
+      'Ficha de cata + video del sommelier',
+      'Invitación a 1 cata mensual exclusiva',
+      '15% de descuento en restaurantes asociados',
+      'Acceso anticipado a eventos TERROIR',
+      'Kit de cata de bienvenida',
+    ],
+  },
+  {
+    id: 'gran-reserva',
+    name: 'Gran Reserva',
+    tagline: 'La experiencia definitiva',
+    price: 50000,
+    currency: 'ARS',
+    period: '/mes',
+    featured: false,
+    benefits: [
+      '4 botellas ultra-premium por mes',
+      'Cata virtual privada con sommelier',
+      'Acceso ilimitado a todas las catas',
+      '25% de descuento en restaurantes asociados',
+      'Cena anual exclusiva con chef invitado',
+      'Visita a bodega con transporte incluido',
+      'Membresía regalo para un amigo (1 mes)',
+    ],
+  },
+];
+
+export const founderBenefits = [
+  { icon: 'wine', title: 'Descuento Fundador', description: '30% de descuento de por vida en tu membresía' },
+  { icon: 'star', title: 'Acceso Prioritario', description: 'Primer acceso a catas y eventos exclusivos' },
+  { icon: 'gift', title: 'Kit de Bienvenida', description: 'Copas de cristal, decanter y accesorios premium' },
+  { icon: 'badge', title: 'Badge Fundador', description: 'Reconocimiento permanente en la comunidad TERROIR' },
+];

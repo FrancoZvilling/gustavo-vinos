@@ -1,0 +1,276 @@
+/* ========================================
+   Home Page Styles
+   ======================================== */
+
+.home.page-content {
+  padding-top: 0;
+}
+
+/* ─── Hero ─── */
+.hero {
+  position: relative;
+  height: 100vh;
+  height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.hero__bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.hero__bg-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.05);
+  animation: heroZoom 20s ease-in-out infinite alternate;
+}
+
+@keyframes heroZoom {
+  from { transform: scale(1.0); }
+  to   { transform: scale(1.1); }
+}
+
+.hero__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.4) 0%,
+    rgba(0, 0, 0, 0.6) 50%,
+    rgba(0, 0, 0, 0.8) 100%
+  );
+}
+
+.hero__content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+}
+
+.hero__text {
+  max-width: 700px;
+  margin-inline: auto;
+}
+
+.hero__title {
+  font-family: var(--font-heading);
+  font-size: var(--fs-hero);
+  font-weight: var(--fw-bold);
+  line-height: var(--lh-tight);
+  color: #F5F0EB;
+  margin-top: var(--space-lg);
+  margin-bottom: var(--space-lg);
+}
+
+.hero__subtitle {
+  font-size: var(--fs-hero-sub);
+  color: rgba(245, 240, 235, 0.75);
+  line-height: var(--lh-body);
+  max-width: 520px;
+  margin-inline: auto;
+  margin-bottom: var(--space-xl);
+}
+
+.hero__cta {
+  display: flex;
+  gap: var(--space-md);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.hero__scroll-indicator {
+  position: absolute;
+  bottom: var(--space-xl);
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgba(245, 240, 235, 0.4);
+  z-index: 1;
+}
+
+/* ─── Section Header ─── */
+.section-header {
+  text-align: center;
+  margin-bottom: var(--space-2xl);
+}
+
+.section-header .text-label {
+  margin-bottom: var(--space-xs);
+  display: block;
+}
+
+.section-footer {
+  text-align: center;
+  margin-top: var(--space-2xl);
+}
+
+/* ─── Articles Grid ─── */
+.home__articles-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-xl);
+}
+
+@media (min-width: 768px) {
+  .home__articles-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .home__articles-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.home__article-link {
+  text-decoration: none;
+  display: block;
+}
+
+.home__article-meta {
+  margin-top: var(--space-sm);
+  font-size: var(--fs-xs);
+  color: var(--color-text-muted);
+}
+
+/* ─── Restaurants Grid ─── */
+.home__restaurants {
+  background: var(--color-bg-secondary);
+}
+
+.home__restaurants-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-xl);
+}
+
+@media (min-width: 768px) {
+  .home__restaurants-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .home__restaurants-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.home__restaurant-link {
+  text-decoration: none;
+  display: block;
+}
+
+.home__restaurant-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-xs);
+}
+
+.home__restaurant-info {
+  display: flex;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-sm);
+  font-size: var(--fs-sm);
+}
+
+.home__restaurant-cuisine {
+  color: var(--color-accent-gold);
+}
+
+.home__restaurant-price {
+  color: var(--color-text-muted);
+}
+
+/* ─── Club Teaser ─── */
+.home__club-teaser {
+  position: relative;
+  overflow: hidden;
+}
+
+.home__club-bg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    #C8A96E 0%,
+    #B08D57 30%,
+    #9E7B45 60%,
+    #C8A96E 100%
+  );
+  opacity: 0.95;
+}
+
+.home__club-content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  color: #0D0D0D;
+}
+
+.home__club-title {
+  color: #0D0D0D;
+  margin-top: var(--space-sm);
+}
+
+.home__club-desc {
+  font-size: var(--fs-md);
+  max-width: 560px;
+  margin-inline: auto;
+  margin-top: var(--space-md);
+  margin-bottom: var(--space-2xl);
+  color: rgba(0, 0, 0, 0.7);
+  line-height: var(--lh-body);
+}
+
+.home__club-benefits {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-2xl);
+  flex-wrap: wrap;
+  margin-bottom: var(--space-2xl);
+}
+
+.home__club-benefit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+  color: #0D0D0D;
+  font-weight: var(--fw-medium);
+  font-size: var(--fs-sm);
+}
+
+.home__club-form {
+  max-width: 440px;
+  margin-inline: auto;
+  margin-bottom: var(--space-xl);
+}
+
+/* Override newsletter colors for gold section */
+.home__club-teaser .newsletter__title,
+.home__club-teaser .newsletter__subtitle {
+  color: #0D0D0D;
+}
+
+.home__club-teaser .newsletter__input-wrapper {
+  background: rgba(255, 255, 255, 0.8);
+  border-color: rgba(0, 0, 0, 0.15);
+}
+
+.home__club-teaser .newsletter__input {
+  color: #0D0D0D;
+}
+
+.home__club-teaser .newsletter__submit {
+  background: #0D0D0D;
+  color: #C8A96E;
+}

@@ -1,0 +1,164 @@
+.restaurant-detail__back {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  color: var(--color-text-secondary);
+  font-size: var(--fs-sm);
+  margin-bottom: var(--space-xl);
+  padding-top: var(--space-lg);
+  transition: color var(--duration-fast);
+}
+
+.restaurant-detail__back:hover {
+  color: var(--color-accent-gold);
+}
+
+/* Gallery */
+.restaurant-detail__gallery {
+  margin-bottom: var(--space-xl);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+}
+
+/* Header */
+.restaurant-detail__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--space-xl);
+  margin-bottom: var(--space-2xl);
+  flex-wrap: wrap;
+}
+
+.restaurant-detail__name {
+  margin-bottom: var(--space-sm);
+}
+
+.restaurant-detail__tags {
+  display: flex;
+  gap: var(--space-sm);
+  font-size: var(--fs-sm);
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-sm);
+}
+
+/* Body */
+.restaurant-detail__body {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-2xl);
+  padding-bottom: var(--space-3xl);
+}
+
+@media (min-width: 1024px) {
+  .restaurant-detail__body {
+    grid-template-columns: 1.5fr 1fr;
+  }
+}
+
+/* Review */
+.restaurant-detail__review p {
+  margin-top: var(--space-md);
+}
+
+/* Ratings */
+.restaurant-detail__ratings {
+  padding: var(--space-xl);
+  border-radius: var(--radius-lg);
+  margin-top: var(--space-xl);
+}
+
+.restaurant-detail__ratings h3 {
+  font-family: var(--font-body);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semibold);
+  text-transform: uppercase;
+  letter-spacing: var(--ls-wider);
+  margin-bottom: var(--space-lg);
+}
+
+.restaurant-detail__rating-items {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.restaurant-detail__rating-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.restaurant-detail__rating-label {
+  font-size: var(--fs-sm);
+  color: var(--color-text-secondary);
+  width: 80px;
+  flex-shrink: 0;
+}
+
+.restaurant-detail__rating-bar {
+  flex: 1;
+  height: 6px;
+  background: var(--color-bg-tertiary);
+  border-radius: var(--radius-full);
+  overflow: hidden;
+}
+
+.restaurant-detail__rating-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--color-accent-gold), var(--color-accent-bronze));
+  border-radius: var(--radius-full);
+  transition: width var(--duration-slow) var(--ease-out);
+}
+
+.restaurant-detail__rating-value {
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semibold);
+  color: var(--color-accent-gold);
+  width: 30px;
+  text-align: right;
+}
+
+/* Sidebar */
+.restaurant-detail__info-card {
+  padding: var(--space-xl);
+  border-radius: var(--radius-lg);
+}
+
+.restaurant-detail__info-card h3 {
+  font-family: var(--font-body);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-semibold);
+  text-transform: uppercase;
+  letter-spacing: var(--ls-wider);
+  margin-bottom: var(--space-lg);
+}
+
+.restaurant-detail__info-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.restaurant-detail__info-row {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-sm);
+  font-size: var(--fs-sm);
+  color: var(--color-text-secondary);
+}
+
+.restaurant-detail__info-row svg {
+  flex-shrink: 0;
+  color: var(--color-accent-gold);
+  margin-top: 2px;
+}
+
+/* Map */
+.restaurant-detail__map-wrapper {
+  height: 280px;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  margin-top: var(--space-xl);
+  border: 1px solid var(--color-border);
+}

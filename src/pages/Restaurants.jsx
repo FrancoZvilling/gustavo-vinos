@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from 'react';
+import { useState, useEffect, useMemo, useRef, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import { Search, SlidersHorizontal, X, Map, List } from 'lucide-react';
@@ -30,6 +30,17 @@ export default function Restaurants() {
   const [selectedZone, setSelectedZone] = useState('todas');
   const [mobileView, setMobileView] = useState('list');
   const [showFilters, setShowFilters] = useState(false);
+  const mapRef = useRef(null);
+
+  // Invalidate map size when switching to map view on mobile
+  const handleViewChange = useCallback((view) => {
+    setMobileView(view);
+    if (view === 'map') {
+      setTimeout(() => {
+        mapRef.current?.invalidateSize();
+      }, 100);
+    }
+  }, []);
 
   useEffect(() => {
     getRestaurantZones().then(setZones);
@@ -88,13 +99,13 @@ export default function Restaurants() {
             <div className="restaurants-page__view-toggle">
               <button
                 className={`restaurants-page__view-btn ${mobileView === 'list' ? 'active' : ''}`}
-                onClick={() => setMobileView('list')}
+                onClick={() => handleViewChange('list')}
               >
                 <List size={18} />
               </button>
               <button
                 className={`restaurants-page__view-btn ${mobileView === 'map' ? 'active' : ''}`}
-                onClick={() => setMobileView('map')}
+                onClick={() => handleViewChange('map')}
               >
                 <Map size={18} />
               </button>
@@ -163,6 +174,7 @@ export default function Restaurants() {
             zoom={13}
             scrollWheelZoom={true}
             style={{ height: '100%', width: '100%' }}
+            ref={mapRef}
           >
             <TileLayer
               attribution='&copy; <a href="https://carto.com/">CARTO</a>'

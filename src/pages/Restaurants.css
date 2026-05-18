@@ -145,6 +145,7 @@
     flex-direction: column;
     height: auto;
     min-height: auto;
+    position: relative;
   }
 }
 
@@ -156,7 +157,10 @@
 }
 
 .restaurants-page__list--hidden {
-  display: none;
+  visibility: hidden;
+  height: 0;
+  overflow: hidden;
+  position: absolute;
 }
 
 .restaurants-page__grid {
@@ -223,7 +227,10 @@
 }
 
 .restaurants-page__map--hidden {
-  display: none;
+  visibility: hidden;
+  height: 0;
+  overflow: hidden;
+  position: absolute;
 }
 
 @media (max-width: 1023px) {

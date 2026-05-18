@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion';
 import './Card.css';
 
 export default function Card({
@@ -10,15 +9,13 @@ export default function Card({
   ...props
 }) {
   return (
-    <motion.div
+    <div
       className={`card card--${variant} ${hover ? 'card--hover' : ''} ${className}`}
       onClick={onClick}
-      whileHover={hover ? { y: -8 } : {}}
-      transition={{ type: 'spring', stiffness: 300, damping: 25 }}
       {...props}
     >
       {children}
-    </motion.div>
+    </div>
   );
 }
 

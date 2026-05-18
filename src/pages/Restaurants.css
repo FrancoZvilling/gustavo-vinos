@@ -133,7 +133,7 @@
   outline: none;
 }
 
-/* Body layout */
+/* Body layout — Desktop: side-by-side flex. Mobile: simple block flow */
 .restaurants-page__body {
   display: flex;
   height: calc(100vh - 280px);
@@ -142,10 +142,9 @@
 
 @media (max-width: 1023px) {
   .restaurants-page__body {
-    flex-direction: column;
+    display: block;
     height: auto;
     min-height: auto;
-    position: relative;
   }
 }
 
@@ -156,11 +155,12 @@
   padding: 0 var(--container-padding) var(--space-xl);
 }
 
-.restaurants-page__list--hidden {
-  visibility: hidden;
-  height: 0;
-  overflow: hidden;
-  position: absolute;
+/* On mobile, no internal scrolling — flows with page */
+@media (max-width: 1023px) {
+  .restaurants-page__list {
+    overflow-y: visible;
+    flex: none;
+  }
 }
 
 .restaurants-page__grid {
@@ -226,19 +226,14 @@
   padding-right: var(--container-padding);
 }
 
-.restaurants-page__map--hidden {
-  visibility: hidden;
-  height: 0;
-  overflow: hidden;
-  position: absolute;
-}
-
 @media (max-width: 1023px) {
   .restaurants-page__map {
     position: relative;
     top: 0;
-    height: 60vh;
+    height: calc(100vh - 200px);
+    min-height: 400px;
     padding: 0 var(--container-padding) var(--space-xl);
+    flex: none;
   }
 }
 

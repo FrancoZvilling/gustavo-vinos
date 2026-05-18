@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo, useRef, useCallback } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import { Search, SlidersHorizontal, X, Map, List } from 'lucide-react';
@@ -30,17 +30,6 @@ export default function Restaurants() {
   const [selectedZone, setSelectedZone] = useState('todas');
   const [mobileView, setMobileView] = useState('list');
   const [showFilters, setShowFilters] = useState(false);
-  const mapRef = useRef(null);
-
-  // Invalidate map size when switching to map view on mobile
-  const handleViewChange = useCallback((view) => {
-    setMobileView(view);
-    if (view === 'map') {
-      setTimeout(() => {
-        mapRef.current?.invalidateSize();
-      }, 100);
-    }
-  }, []);
 
   useEffect(() => {
     getRestaurantZones().then(setZones);
@@ -99,13 +88,13 @@ export default function Restaurants() {
             <div className="restaurants-page__view-toggle">
               <button
                 className={`restaurants-page__view-btn ${mobileView === 'list' ? 'active' : ''}`}
-                onClick={() => handleViewChange('list')}
+                onClick={() => setMobileView('list')}
               >
                 <List size={18} />
               </button>
               <button
                 className={`restaurants-page__view-btn ${mobileView === 'map' ? 'active' : ''}`}
-                onClick={() => handleViewChange('map')}
+                onClick={() => setMobileView('map')}
               >
                 <Map size={18} />
               </button>
@@ -126,73 +115,78 @@ export default function Restaurants() {
         )}
       </div>
 
-      <div className={`restaurants-page__body ${isMobile ? `restaurants-page__body--${mobileView}` : ''}`}>
-        {/* List */}
-        <div className={`restaurants-page__list ${isMobile && mobileView === 'map' ? 'restaurants-page__list--hidden' : ''}`}>
-          {loading ? (
-            <div className="restaurants-page__grid">
-              {Array.from({ length: 4 }, (_, i) => <SkeletonCard key={i} />)}
-            </div>
-          ) : restaurants.length === 0 ? (
-            <div className="restaurants-page__empty">
-              <p>No se encontraron restaurantes con esos filtros.</p>
-            </div>
-          ) : (
-            <div className="restaurants-page__grid">
-              {restaurants.map((rest, i) => (
-                <ScrollReveal key={rest.id} delay={i * 0.08}>
-                  <Link to={`/restaurantes/${rest.slug}`} className="restaurants-page__card-link">
-                    <Card>
-                      <CardImage src={rest.images[0]} alt={rest.name} aspect="3/2" />
-                      <CardContent>
-                        <div className="restaurants-page__card-top">
-                          <h3 className="heading-card">{rest.name}</h3>
-                          <span className="restaurants-page__price">{rest.priceRange}</span>
-                        </div>
-                        <StarRating rating={rest.rating} size={14} showLabel />
-                        <div className="restaurants-page__card-info">
-                          <span>{rest.cuisine}</span>
-                          <span>·</span>
-                          <span>{rest.zone}</span>
-                        </div>
-                        <p className="text-body restaurants-page__card-excerpt">
-                          {rest.excerpt}
-                        </p>
-                      </CardContent>
-                    </Card>
-                  </Link>
-                </ScrollReveal>
-              ))}
-            </div>
-          )}
-        </div>
+      <div className="restaurants-page__body">
+        {/* List — show on desktop always, on mobile only when list view */}
+        {(!isMobile || mobileView === 'list') && (
+          <div className="restaurants-page__list">
+            {loading ? (
+              <div className="restaurants-page__grid">
+                {Array.from({ length: 4 }, (_, i) => <SkeletonCard key={i} />)}
+              </div>
+            ) : restaurants.length === 0 ? (
+              <div className="restaurants-page__empty">
+                <p>No se encontraron restaurantes con esos filtros.</p>
+              </div>
+            ) : (
+              <div className="restaurants-page__grid">
+                {restaurants.map((rest, i) => (
+                  <ScrollReveal key={rest.id} delay={i * 0.08}>
+                    <Link to={`/restaurantes/${rest.slug}`} className="restaurants-page__card-link">
+                      <Card>
+                        <CardImage src={rest.images[0]} alt={rest.name} aspect="3/2" />
+                        <CardContent>
+                          <div className="restaurants-page__card-top">
+                            <h3 className="heading-card">{rest.name}</h3>
+                            <span className="restaurants-page__price">{rest.priceRange}</span>
+                          </div>
+                          <StarRating rating={rest.rating} size={14} showLabel />
+                          <div className="restaurants-page__card-info">
+                            <span>{rest.cuisine}</span>
+                            <span>·</span>
+                            <span>{rest.zone}</span>
+                          </div>
+                          <p className="text-body restaurants-page__card-excerpt">
+                            {rest.excerpt}
+                          </p>
+                        </CardContent>
+                      </Card>
+                    </Link>
+                  </ScrollReveal>
+                ))}
+              </div>
+            )}
+          </div>
+        )}
 
-        {/* Map */}
-        <div className={`restaurants-page__map ${isMobile && mobileView === 'list' ? 'restaurants-page__map--hidden' : ''}`}>
-          <MapContainer
-            center={mapCenter}
-            zoom={13}
-            scrollWheelZoom={true}
-            style={{ height: '100%', width: '100%' }}
-            ref={mapRef}
-          >
-            <TileLayer
-              attribution='&copy; <a href="https://carto.com/">CARTO</a>'
-              url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
-            />
-            {restaurants.map(rest => (
-              <Marker key={rest.id} position={rest.coordinates} icon={customIcon}>
-                <Popup>
-                  <div className="map-popup">
-                    <strong>{rest.name}</strong>
-                    <p>{rest.cuisine} · {rest.priceRange}</p>
-                    <Link to={`/restaurantes/${rest.slug}`}>Ver detalle →</Link>
-                  </div>
-                </Popup>
-              </Marker>
-            ))}
-          </MapContainer>
-        </div>
+        {/* Map — show on desktop always, on mobile only when map view */}
+        {(!isMobile || mobileView === 'map') && (
+          <div className="restaurants-page__map">
+            <MapContainer
+              center={mapCenter}
+              zoom={13}
+              scrollWheelZoom={!isMobile}
+              dragging={true}
+              tap={true}
+              style={{ height: '100%', width: '100%' }}
+            >
+              <TileLayer
+                attribution='&copy; <a href="https://carto.com/">CARTO</a>'
+                url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
+              />
+              {restaurants.map(rest => (
+                <Marker key={rest.id} position={rest.coordinates} icon={customIcon}>
+                  <Popup>
+                    <div className="map-popup">
+                      <strong>{rest.name}</strong>
+                      <p>{rest.cuisine} · {rest.priceRange}</p>
+                      <Link to={`/restaurantes/${rest.slug}`}>Ver detalle →</Link>
+                    </div>
+                  </Popup>
+                </Marker>
+              ))}
+            </MapContainer>
+          </div>
+        )}
       </div>
     </PageWrapper>
   );
